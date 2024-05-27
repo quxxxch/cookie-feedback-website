@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TASK 7.4D</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/feedback.js"></script>
+
+</head>
+
+<body>
+
+    <div class="bg-secondary-subtle text-emphasis-secondary px-5 py-5">
+        <container>
+            <h1 class="mb-2">Home-made Cookies</h1>
+            <p class="lead mb-2">Your feedback is valuable to us and we aim to continuously improve the quality of our
+                products
+                and services.</p>
+        </container>
+    </div>
+
+    <form id="feedbackForm" class="px-5 py-5">
+        <h2>FEEDBACK FORM</h2>
+        <p class="lead mb-2">Please provide your feedback on your experiences with our Homemade Cookies. Include your name, comment and
+            rating.</p>
+
+        <div class="card">
+            <div class="card-header"> How was your experience with our Homemade Cookies?</div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <label for="inputName" class="col-sm-2 col-form-label">Name:</label>
+                    <div>
+                        <input type="text" class="form-control" id="inputName" placeholder="Full name here..." required>
+                    </div>
+                </div>
+
+                <div class=" mb-3 form-group">
+                    <label for="cfeedback" class="col-sm-2 col-form-label">Customer Feedback </label>
+                    <textarea class="form-control" id="cfeedback" name="notes" rows="4"
+                        placeholder="Enter your feedback on your cookie experience here..."></textarea>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="rating" class="col-sm-2 col-form-label">Rating </label>
+                    <div class="row mb-3">
+                        <div class="col-sm-10">
+                            <select class="form-control" id="rating" name="rating" required>
+                                <option value="" disabled selected>Choose a rating</option>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Poor">Poor</option>
+                                <option value="Disappointing">Disappointing</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary offset-sm-2">Add Feedback</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Positive Responses Table -->
+    <div class="row mb-3  px-5 py-5">
+        <div class="col-sm-6">
+            <div class="card mt-3 ">
+                <div class="card-header">Customer Responses with <em>Positive</em> Feedback </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="positiveTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Feedback</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <!-- Positive feedback rows will be dynamically inserted here -->
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <!-- Negative Responses Table -->
+            <div class="card mt-3">
+                <div class="card-header">Customer Responses with <em>Negative</em> Feedback</div>
+                <div class="card-body">
+                    <table class="table table-striped" id="negativeTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Feedback</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <!-- Negative feedback rows will be dynamically inserted here -->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+
+
+</html>

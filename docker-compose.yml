@@ -1,0 +1,69 @@
+version: "3.9"
+
+services:
+  sonarqube:
+    image: sonarqube:lts-community
+    container_name: sonar-container
+    restart: always
+    networks:
+      - sonarnet
+    environment:
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://postgressdb:5432/sonarqube
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+  #       volumes:
+  #       - './data/sonar/sonarqube_conf:/opt/sonarqube/conf'
+  #       - './data/sonar/sonarqube_data:/opt/sonarqube/data'
+  #       - './data/sonar/sonarqube_extensions:/opt/sonarqube/extensions'
+  #       - './data/sonar/sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins'
+
+  postgressdb:
+    image: postgres:16.3-alpine3.20
+    container_name: postgres-container
+    restart: always
+    networks:
+      - sonarnet
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonarqube
+#    volumes:
+#      - './data/postgresql/sonarqube_db:/var/lib/postgresql'
+#      - './data/postgresql/postgresql_data:/var/lib/postgresql/data'
+ 
+      
+
+  jaeger:
+    image: jaegertracing/all-in-one:${JAEGER_VERSION:-latest}
+    ports:
+      - "16686:16686"
+      - "4318:4318"
+    environment:
+      - LOG_LEVEL=debug
+    networks:
+      - jaeger-example
+  hotrod:
+    image: jaegertracing/example-hotrod:${JAEGER_VERSION:-latest}
+    # To run the latest trunk build, find the tag at Docker Hub and use the line below
+    # https://hub.docker.com/r/jaegertracing/example-hotrod-snapshot/tags
+    #image: jaegertracing/example-hotrod-snapshot:0ab8f2fcb12ff0d10830c1ee3bb52b745522db6c
+    ports:
+      - "8081:8081"
+      - "8083:8083"
+    command: ["all"]
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
+    networks:
+      - jaeger-example
+    depends_on:
+      - jaeger
+
+networks:
+  sonarnet:
+    driver: bridge
+
+
+  jaeger-example:

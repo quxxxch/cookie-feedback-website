@@ -8,12 +8,6 @@ pipeline {
     }
     stages {
 
-        // stage('Build') {
-        //     steps {
-        //         sh '/usr/local/bin/docker build -f Dockerfile -t website:latest .'
-
-        //     }
-        // }
         stage('Build') {
             steps {
                 sh 'export PATH=$PATH:/usr/local/bin && docker build -f Dockerfile -t website:latest .'
@@ -76,7 +70,7 @@ pipeline {
                 script {
                     sh '''
                     export OCTOPUS_CLI_SERVER="https://quxch.octopus.app/"
-                    export OCTOPUS_CLI_API_KEY="API-JZFPOQTJYYYXLSP7IAR9NR0EGAJ7TWO"
+                    export OCTOPUS_CLI_API_KEY= $OCTOPUS_API_KEY
                     /usr/local/bin/octopus release create \
                         --project "website" \
                         --releaseNumber "1.0.${BUILD_NUMBER}" \

@@ -20,7 +20,7 @@ pipeline {
             }
         }
         
-        stage('SonarQube analysis') {
+        stage('Code analysis') {
           steps {
             sh 'export PATH=/opt/homebrew/Cellar/openjdk/21.0.3/bin:$PATH && java -version'
             script {
@@ -32,7 +32,6 @@ pipeline {
           }
         }
         
-
         stage('Deploy') {
             steps {
                 script {

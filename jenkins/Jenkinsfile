@@ -43,26 +43,6 @@ pipeline {
                 }
             }
         }
-        //  stage('Release') {
-        //     steps {
-        //         script {
-                //     echo 'Pull the latest image from Docker Hub...'
-                //     sh 'export PATH=$PATH:/usr/local/bin && docker pull quxch/website:latest'
-                //     echo 'Stop the currently running container (if any)'
-                //     sh '''if [ $(export PATH=$PATH:/usr/local/bin && docker ps -q -f name=my_website) ]; then
-                //         export PATH=$PATH:/usr/local/bin && docker stop my_website
-                //     fi
-                //     '''
-                //     echo 'Remove the stopped container'
-                //     sh '''if [ $(export PATH=$PATH:/usr/local/bin && docker ps -aq -f status=exited -f name=my_website) ]; then
-                //         export PATH=$PATH:/usr/local/bin && docker rm my_website
-                //     fi
-                //     '''
-                //     echo 'Run a new container with the latest image'
-                //     sh 'export PATH=$PATH:/usr/local/bin && docker run -d --rm -p 3000:3000 --name my_website quxch/website:latest'
-                // }
-        //     }
-        // }
 
         stage('Release') {
             steps {

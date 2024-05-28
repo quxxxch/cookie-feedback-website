@@ -70,7 +70,7 @@ pipeline {
                 script {
                     sh '''
                     export OCTOPUS_CLI_SERVER="https://quxch.octopus.app/"
-                    export OCTOPUS_CLI_API_KEY= $OCTOPUS_API_KEY
+                    export OCTOPUS_CLI_API_KEY="API-JZFPOQTJYYYXLSP7IAR9NR0EGAJ7TWO"
                     /usr/local/bin/octopus release create \
                         --project "website" \
                         --releaseNumber "1.0.${BUILD_NUMBER}" \
